@@ -2,18 +2,19 @@
 	"name": "Blank",
 	"version": "0.0.0",
 	"description": "Blank Wordpress theme",
-	"keywords": [],
+	"keywords": ["wordpress", "theme", "blank"],
 	"author": "Roman Ozana <ozana@omdesign.cz>",
+	"license": "BSD-2-Clause",
 	"dependencies": {
 	},
 	"devDependencies": {
-		"grunt": "*",
-		"grunt-bump": "*",
-		"grunt-recess": "*",
-		"grunt-contrib-coffee": "*",
-		"grunt-contrib-compress": "*",
-		"grunt-contrib-clean": "*",
-		"grunt-closure-tools": "*",
-		"grunt-exec ": "*"
+		"gulp": "~3.5.6",
+		"gulp-closure-compiler": "~0.1.2",
+		"gulp-coffee": "~1.4.1",
+		"gulp-util": "~2.2.14",
+		"gulp-less": "~1.2.3",
+		"gulp-concat": "~2.2.0",
+		"gulp-exec": "~1.0.4",
+		"gulp-imagemin": "~0.1.5"
 	}
 }

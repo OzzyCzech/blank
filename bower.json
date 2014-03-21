@@ -3,9 +3,6 @@
 	"version": "0.0.0",
 
 	"dependencies": {
-		"closure-compiler": "http://closure-compiler.googlecode.com/files/compiler-latest.zip",
-		"bootstrap": "v3.0.0-rc.2",
-		"html5shiv": "3.6.2",
-		"zepto": "1.0"
+		"bootstrap": "v3.1.1"
 	}
 }

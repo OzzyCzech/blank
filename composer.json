@@ -8,16 +8,10 @@
 	"minimum-stability": "dev",
 
 	"require": {
-		"php": ">=5.4.0",
-		"om/wplugins": "*"
-	},
-
-	"scripts": {
-		"post-update-cmd": ["echo [WARNING] Delete .git dirs", "rm -rf libs/**/**/.git"],
-		"post-install-cmd": ["echo [WARNING] Delete .git dirs", "rm -rf libs/**/**/.git"]
+		"php": ">=5.4.0"
 	},
 
 	"autoload": {
-		"classmap": ["classes"]
+		"classmap": ["libs"]
 	}
 }

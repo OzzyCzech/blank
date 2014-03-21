@@ -14,39 +14,34 @@
 	<link rel="apple-touch-icon" sizes="512x512" href="<?= uri('img/touch/apple-touch-icon-itunes.png') ?>"/>
 	<meta name="apple-mobile-web-app-title" content="<?= get_bloginfo('name') ?>"/>
 	<meta name="application-name" content="<?= get_bloginfo('name') ?>"/>
-	<? if (\om\Globals::is_IE()) { ?>
-		<!--[if lt IE 9]>
-		<script src="<?= uri('vendor/html5shiv/dist/html5shiv.js') ?>" type="text/javascript"></script>
-		<![endif]-->
-	<? } ?>
 	<? wp_head(); ?>
 </head>
 
 <body <? body_class(); ?>>
 <div id="page">
-<header id="masthead" class="site-header" role="banner">
-	<div class="container center">
+	<header id="masthead" class="site-header" role="banner">
+		<div class="container center">
 
-		<nav role="navigation" class="site-navigation main-navigation">
-			<? wp_nav_menu(array('theme_location' => 'primary')); ?>
-		</nav>
-	</div>
-	<div class="center">
+			<nav role="navigation" class="site-navigation main-navigation">
+				<? wp_nav_menu(array('theme_location' => 'primary')); ?>
+			</nav>
+		</div>
+		<div class="center">
 
-		<div id="brand">
-			<h1 class="site-title">
-				<a href="<? echo esc_url(home_url('/')) ?>"
-				   title="<? echo esc_attr(get_bloginfo('name', 'display')); ?>"
-				   rel="home"><? bloginfo('name'); ?></a>
-			</h1>
-			<h4 class="site-description">
-				<? bloginfo('description'); ?>
-			</h4>
+			<div id="brand">
+				<h1 class="site-title">
+					<a href="<? echo esc_url(home_url('/')) ?>"
+					   title="<? echo esc_attr(get_bloginfo('name', 'display')); ?>"
+					   rel="home"><? bloginfo('name'); ?></a>
+				</h1>
+				<h4 class="site-description">
+					<? bloginfo('description'); ?>
+				</h4>
+			</div>
+
+			<div class="clear"></div>
 		</div>
 
-		<div class="clear"></div>
-	</div>
+	</header>
 
-</header>
-
-<div class="main-fluid">
+	<div class="main-fluid">

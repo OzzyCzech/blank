@@ -7,7 +7,7 @@ class Theme {
 
 	/** @var null */
 	public static $version = null;
-	
+
 	public function __construct() {
 		add_action('wp_enqueue_scripts', array($this, 'loadScripts'));
 
@@ -19,6 +19,7 @@ class Theme {
 
 		add_theme_support('automatic-feed-links');
 		add_action('widgets_init', array($this, 'widgetsInit'));
+		add_action('after_switch_theme', array($this, 'after_switch_theme'));
 	}
 
 	public function loadScripts() {
@@ -40,4 +41,9 @@ class Theme {
 			)
 		);
 	}
+
+	public function after_switch_theme() {
+		flush_rewrite_rules();
+	}
+
 }
