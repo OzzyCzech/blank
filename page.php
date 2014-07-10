@@ -1,33 +1,18 @@
 <? get_header(); ?>
-	<div id="primary" class="row-fluid">
-		<div id="content" role="main" class="span8 offset2">
 
-			<? if (have_posts()) : ?>
+<div class="container">
 
-				<? while (have_posts()) : the_post(); ?>
+	<? if (have_posts()) : ?>
+		<? while (have_posts()) : the_post(); ?>
+			<? get_template_part('content', get_post_format()); ?>
+		<? endwhile; ?>
 
-					<article class="post">
+		<? if (comments_open() || '0' != get_comments_number()) comments_template('', true); ?>
 
-						<h1 class="title"><? the_title(); ?></h1>
+	<? else : ?>
+		<? get_template_part('content', 'none'); ?>
+	<? endif; ?>
 
-						<div class="the-content">
-							<? the_content(); ?>
+</div>
+<? get_footer(); ?>
 
-							<? wp_link_pages(); ?>
-						</div>
-
-					</article>
-
-				<? endwhile; ?>
-
-			<? else : ?>
-
-				<article class="post error">
-					<h1 class="404">Nothing posted yet</h1>
-				</article>
-
-			<? endif; ?>
-
-		</div>
-	</div>
-<? get_footer();?>

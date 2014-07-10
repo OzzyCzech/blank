@@ -9,8 +9,18 @@ define('BLANK', BLANK); //
  * @param $uri
  * @return string
  */
-function uri($uri) {
+function src($uri) {
 	return get_stylesheet_directory_uri() . '/' . $uri;
+}
+
+/**
+ * Output Javascript data
+ *
+ * @param $name
+ * @param string $data
+ */
+function jsData($name, $data = null) {
+	echo "<script type=\"text/javascript\">/* <![CDATA[ */ var $name = " . json_encode($data) . ";/* ]]> */</script>";
 }
 
 

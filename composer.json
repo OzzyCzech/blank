@@ -12,6 +12,8 @@
 	},
 
 	"autoload": {
-		"classmap": ["libs"]
+		"psr-4": {
+			"blank\\": "src"
+		}
 	}
 }

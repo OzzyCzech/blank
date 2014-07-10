@@ -11,6 +11,10 @@ gulp.task("css", function () {
 	gulp.src("style.less")
 			.pipe(less({compress: true}))
 			.pipe(gulp.dest("."));
+
+	gulp.src("editor.less")
+			.pipe(less({compress: true}))
+			.pipe(gulp.dest("."));
 });
 
 gulp.task("coffee", function () {
