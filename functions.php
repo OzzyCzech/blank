@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
-define('BLANK', BLANK); //
+define('BLANK', 'blank'); //
 
 /**
  * Return current theme URI

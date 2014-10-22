@@ -1,7 +1,10 @@
 <? get_header(); ?>
-	<div id="primary" class="row-fluid">
-		<div id="content" role="main" class="span8 offset2">
-			<h1>Home</h1>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			HOME
 		</div>
 	</div>
+</div>
 <? get_footer(); ?>
