@@ -22,7 +22,10 @@
 	<? wp_head(); ?>
 </head>
 
-<body <? body_class(); ?>>
+<body <? body_class('no-js'); ?>>
+<script type="text/javascript">
+	document.body.className = document.body.className.replace('no-js', 'js');
+</script>
 <header class="main">
 	<div class="container">
 
