@@ -38,7 +38,6 @@ class Pagination {
 
 		$args = wp_parse_args($args, $defaults);
 		extract($args, EXTR_SKIP);
-
 		// Who knows what else people pass in $args
 		$total = (int)$total;
 		if ($total < 2) return;

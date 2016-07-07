@@ -8,6 +8,9 @@
     "php": ">=5.6.0"
   },
   "autoload": {
+    "files": [
+      "src/theme.php"
+    ],
     "psr-4": {
       "blank\\": "src"
     }

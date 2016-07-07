@@ -1,6 +1,7 @@
 js/*.min.js
 css/*.css
 style.css
+editor.css
 
 node_modules
 vendor

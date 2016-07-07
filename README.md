@@ -1,13 +1,12 @@
 # Blank Wordpress theme
 
-Blank is basic Wordpress theme based on Titter Bootstrap.
+Blank is basic Wordpress theme 
 
-## How to Install / Change
+## How to install
 
-First you will need install all dependencies
-
-		npm install
-		bower install
-		composer install
-
-then just run `gulp` from command line.
+```bash
+git clone git@github.com:OzzyCzech/blank.git wp-content/themes/blank
+cd wp-content/themes/blank
+npm install && composer install
+webpack
+```

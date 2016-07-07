@@ -1,8 +1,0 @@
-{
-	"name": "Blank theme",
-	"version": "0.0.0",
-
-	"dependencies": {
-		"bootstrap": "v3.2.0"
-	}
-}

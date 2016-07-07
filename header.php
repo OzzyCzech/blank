@@ -1,8 +1,11 @@
-<!DOCTYPE html <? language_attributes(); ?>>
+<!doctype html <? language_attributes(); ?>>
+<html lang="<? language_attributes(); ?>">
 <head>
 	<meta charset="<? bloginfo('charset'); ?>"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 	<title><? wp_title('|', true, 'right'); ?></title>
+
 	<link rel="pingback" href="<? bloginfo('pingback_url') ?>"/>
 	<link rel="author" href="<?= src('humans.txt') ?>"/>
 
