@@ -1,30 +1,26 @@
 <?php
-namespace blank;
+namespace comments {
 
-class Comments {
+	add_filter('comment_form_defaults', ['comment_form_defaults']);
 
-	public function __construct() {
-		add_filter('comment_form_defaults', [$this, 'comment_form_defaults']);
-	}
-
-	public function comment_form_defaults($defaults) {
+	function comment_form_defaults($defaults) {
 		$defaults['fields']['author'] = '
-		<div class="form-group">
-			<label class="col-md-12 control-label required" for="author">' . __('Name', BLANK) . '</label>
-			<div class="col-md-12">
-				<input id="author" name="author" type="text" value="" required="required" class="form-control"/></p>
+			<div class="form-group">
+				<label class="col-md-12 control-label required" for="author">' . __('Name', THEME) . '</label>
+				<div class="col-md-12">
+					<input id="author" name="author" type="text" value="" required="required" class="form-control"/></p>
+				</div>
 			</div>
-		</div>
-		';
+			';
 
 		$defaults['fields']['email'] = '
-		<div class="form-group">
-			<label class="col-md-12 control-label required" for="email">' . __('E-mail', BLANK) . '</label>
-			<div class="col-md-12">
-				<input id="email" name="email" type="text" value="" required="required" class="form-control"/></p>
+			<div class="form-group">
+				<label class="col-md-12 control-label required" for="email">' . __('E-mail', THEME) . '</label>
+				<div class="col-md-12">
+					<input id="email" name="email" type="text" value="" required="required" class="form-control"/></p>
+				</div>
 			</div>
-		</div>
-		';
+			';
 
 		unset($defaults['fields']['url']);
 		unset($defaults['comment_notes_before']);
@@ -32,13 +28,13 @@ class Comments {
 		unset($defaults['comment_notes_after']);
 
 		$defaults['comment_field'] = '
-		<div class="form-group">
-			<label class="col-md-12 control-label required" for="email">' . __('Comment', BLANK) . '</label>
-			<div class="col-md-12">
-				<textarea id="comment" name="comment" required="required" class="form-control"></textarea>
+			<div class="form-group">
+				<label class="col-md-12 control-label required" for="email">' . __('Comment', THEME) . '</label>
+				<div class="col-md-12">
+					<textarea id="comment" name="comment" required="required" class="form-control"></textarea>
+				</div>
 			</div>
-		</div>
-		';
+			';
 
 		$defaults['cancel_reply_link'] = '✕';
 		return $defaults;

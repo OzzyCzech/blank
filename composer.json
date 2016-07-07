@@ -9,6 +9,7 @@
   },
   "autoload": {
     "files": [
+      "src/functions.php",
       "src/theme.php"
     ],
     "psr-4": {
