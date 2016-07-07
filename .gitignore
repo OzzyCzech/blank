@@ -1,10 +1,7 @@
-.idea
-
-js/*.js
+js/*.min.js
 css/*.css
 style.css
 
 node_modules
 vendor
-bower_components
 composer.lock
