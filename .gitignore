@@ -1,5 +1,7 @@
 js/*.min.js
 css/*.css
+!css/reset.css
+!css/typebase.css
 style.css
 editor.css
 
