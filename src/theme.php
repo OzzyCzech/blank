@@ -9,7 +9,7 @@ namespace theme {
 	);
 
 	// translation
-	load_theme_textdomain(theme, get_template_directory() . '/languages');
+	load_theme_textdomain(THEME, get_template_directory() . '/languages');
 
 	// theme support
 	add_theme_support('title-tag');
@@ -65,10 +65,10 @@ namespace theme {
 		return $classes;
 	}
 
-	add_action('init', 'init');
-	add_action('widgets_init', 'widgets_init');
-	add_action('wp_enqueue_scripts', 'wp_enqueue_scripts');
-	add_action('after_switch_theme', 'after_switch_theme');
-	add_action('template_include', 'template_include');
-	add_action('body_class', 'body_class');
+	add_action('init', '\theme\init');
+	add_action('widgets_init', '\theme\widgets_init');
+	add_action('wp_enqueue_scripts', '\theme\wp_enqueue_scripts');
+	add_action('after_switch_theme', '\theme\after_switch_theme');
+	add_action('template_include', '\theme\template_include');
+	add_action('body_class', '\theme\body_class');
 }
