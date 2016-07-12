@@ -23,15 +23,13 @@
 <body <? body_class(); ?>>
 
 <header class="main">
-	<div class="container">
-		<h1 class="site-title">
-			<a href="<? echo esc_url(home_url('/')) ?>"
-			   title="<? echo esc_attr(get_bloginfo('name', 'display')); ?>"
-			   rel="home"><? bloginfo('name'); ?></a>
-		</h1>
-		<h4 class="site-description"><? bloginfo('description'); ?></h4>
-		<nav role="navigation" class="site-navigation main-navigation">
-			<? wp_nav_menu(array('theme_location' => 'primary')); ?>
-		</nav>
-	</div>
+	<h1 class="site-title">
+		<a href="<? echo esc_url(home_url('/')) ?>"
+		   title="<? echo esc_attr(get_bloginfo('name', 'display')); ?>"
+		   rel="home"><? bloginfo('name'); ?></a>
+	</h1>
+	<h4 class="site-description"><? bloginfo('description'); ?></h4>
+	<nav role="navigation" class="site-navigation main-navigation">
+		<? wp_nav_menu(array('theme_location' => 'primary')); ?>
+	</nav>
 </header>
