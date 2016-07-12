@@ -5,7 +5,6 @@
 			<? wp_get_archives(array('type' => 'monthly')); ?>
 		</ul>
 	</aside>
-
 	<aside id="meta" class="widget">
 		<h3 class="side-title"><? _e('Meta', 'blank'); ?></h3>
 		<ul>
@@ -14,5 +13,4 @@
 			<? wp_meta(); ?>
 		</ul>
 	</aside>
-
 <? endif; ?>

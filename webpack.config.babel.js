@@ -3,7 +3,6 @@ import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
-
 var argv = require('minimist')(process.argv.slice(2));
 
 // webpack --stable
@@ -11,7 +10,6 @@ const isDevelopment = Boolean(!argv.stable);
 if (!isDevelopment) {
 	console.log("\n_.~._.~._.~._ RUNNING WEBPACK IN PRODUCTION MODE _.~._.~._.~._\n");
 }
-
 
 export default {
 	context: path.resolve('./'),
@@ -23,9 +21,7 @@ export default {
 	// http://webpack.github.io/docs/configuration.html#devtool
 	devtool: isDevelopment ? 'cheap-module-eval-source-map' : '',
 
-	entry: {
-		app: "./js/app"
-	},
+	entry: {app: "./js/app"},
 
 	// Výstupní soubory...
 	output: {
