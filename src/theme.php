@@ -1,15 +1,16 @@
 <?php
 namespace theme {
 
-	// menus
+	define('LD', basename(dirname(__DIR__))); // Language Domain name
+
 	register_nav_menus(
 		[
-			'primary' => __('Primary Menu', THEME),
+			'primary' => __('Primary Menu', LD),
 		]
 	);
 
 	// translation
-	load_theme_textdomain(THEME, get_template_directory() . '/languages');
+	load_theme_textdomain(LD, get_template_directory() . '/languages');
 
 	// theme support
 	add_theme_support('title-tag');
@@ -22,8 +23,8 @@ namespace theme {
 	}
 
 	function wp_enqueue_scripts() {
-		wp_enqueue_style('style', src('style.css'), VERSION, 'all');
-		wp_enqueue_script('main', src('js/app.min.js'), [], VERSION, true);
+		wp_enqueue_style('style', src('style.css'), [], false, 'all');
+		wp_enqueue_script('main', src('js/app.min.js'), [], false, true);
 
 		if (is_singular() && comments_open() && get_option('thread_comments')) {
 			wp_enqueue_script('comment-reply');

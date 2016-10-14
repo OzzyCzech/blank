@@ -6,7 +6,7 @@ namespace comments {
 	function comment_form_defaults($defaults) {
 		$defaults['fields']['author'] = '
 			<div class="form-group">
-				<label class="col-md-12 control-label required" for="author">' . __('Name', THEME) . '</label>
+				<label class="col-md-12 control-label required" for="author">' . __('Name', LD) . '</label>
 				<div class="col-md-12">
 					<input id="author" name="author" type="text" value="" required="required" class="form-control"/></p>
 				</div>
@@ -15,7 +15,7 @@ namespace comments {
 
 		$defaults['fields']['email'] = '
 			<div class="form-group">
-				<label class="col-md-12 control-label required" for="email">' . __('E-mail', THEME) . '</label>
+				<label class="col-md-12 control-label required" for="email">' . __('E-mail', LD) . '</label>
 				<div class="col-md-12">
 					<input id="email" name="email" type="text" value="" required="required" class="form-control"/></p>
 				</div>
@@ -29,7 +29,7 @@ namespace comments {
 
 		$defaults['comment_field'] = '
 			<div class="form-group">
-				<label class="col-md-12 control-label required" for="email">' . __('Comment', THEME) . '</label>
+				<label class="col-md-12 control-label required" for="email">' . __('Comment', LD) . '</label>
 				<div class="col-md-12">
 					<textarea id="comment" name="comment" required="required" class="form-control"></textarea>
 				</div>
