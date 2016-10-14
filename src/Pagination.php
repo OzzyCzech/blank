@@ -1,16 +1,12 @@
 <?php
-namespace blank;
-/**
- * @author Roman Ozana <ozana@omdesign.cz>
- */
-class Pagination {
+namespace Pagination {
 
 	/**
 	 * @param null $query
 	 * @param string $args
 	 * @return string
 	 */
-	public static function show($query = null, $args = '') {
+	function show($query = null, $args = '') {
 		global $wp_query;
 		$query = $query ? $query : $wp_query;
 
@@ -111,4 +107,6 @@ class Pagination {
 		$r .= "</ul>$after_pagination";
 		return $r;
 	}
+
 }
+

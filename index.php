@@ -6,7 +6,7 @@
 			<? get_template_part('content', get_post_format()); ?>
 		<? endwhile; ?>
 	</section>
-	<?= \blank\Pagination::show() ?>
+	<?= \Pagination\show() ?>
 <? else : ?>
 	<? get_template_part('content', 'none'); ?>
 <? endif; ?>
