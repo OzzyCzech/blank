@@ -77,7 +77,7 @@ const app = {
 
 	plugins: [
 
-		new HtmlWebpackPlugin({title: '', minify: {}}),
+		new HtmlWebpackPlugin({title: '', alwaysWriteToDisk: true, minify: {}}),
 
 		// Always write HTML to disc
 		new HtmlWebpackHarddiskPlugin(),
