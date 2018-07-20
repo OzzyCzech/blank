@@ -1,9 +1,7 @@
 <?php
+
 namespace blank;
 
-	/**
-	 * @author Roman Ožana <ozana@omdesign.cz>
-	 */
 /**
  * @author Roman Ožana <ozana@omdesign.cz>
  */
@@ -14,8 +12,8 @@ class StaticPages {
 
 		add_action(
 			'template_redirect', function () {
-				remove_action('template_redirect', 'wp_redirect_admin_locations', 999);
-			}
+			remove_action('template_redirect', 'wp_redirect_admin_locations', 999);
+		}
 		);
 	}
 
@@ -23,11 +21,11 @@ class StaticPages {
 		$add = func_get_args();
 		add_filter(
 			'wpseo_breadcrumb_links', function ($links) use ($add) {
-				$first = array_shift($links);
-				foreach ($add as $item) array_unshift($links, $item);
-				array_unshift($links, $first);
-				return $links;
-			},
+			$first = array_shift($links);
+			foreach ($add as $item) array_unshift($links, $item);
+			array_unshift($links, $first);
+			return $links;
+		},
 			999
 		);
 	}
@@ -36,9 +34,9 @@ class StaticPages {
 		$add = func_get_args();
 		add_filter(
 			'wpseo_breadcrumb_links', function ($links) use ($add) {
-				foreach ($add as $item) $links[] = $item;
-				return $links;
-			},
+			foreach ($add as $item) $links[] = $item;
+			return $links;
+		},
 			999
 		);
 	}
@@ -46,8 +44,8 @@ class StaticPages {
 	public static function title($title) {
 		add_filter(
 			'wp_title', function () use ($title) {
-				return $title;
-			}, 999
+			return $title;
+		}, 999
 		);
 	}
 
@@ -84,9 +82,9 @@ class StaticPages {
 			status_header(200);
 			add_filter(
 				'body_class', function ($class) use ($name) {
-					$class[] = sanitize_title($name);
-					return $class;
-				}, 999
+				$class[] = sanitize_title($name);
+				return $class;
+			}, 999
 			);
 		}
 

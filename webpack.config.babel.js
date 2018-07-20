@@ -1,87 +1,95 @@
+require('dotenv').config();
+
 import path from 'path';
-import webpack from 'webpack';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import autoprefixer from 'autoprefixer';
-import cssnano from 'cssnano';
-var argv = require('minimist')(process.argv.slice(2));
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin';
 
-// webpack --stable
-const isDevelopment = Boolean(!argv.stable);
-if (!isDevelopment) {
-	console.log("\n_.~._.~._.~._ RUNNING WEBPACK IN PRODUCTION MODE _.~._.~._.~._\n");
-}
+const isHot = process.argv.indexOf('--hot') !== -1; // detect --hot
+const isDev = process.argv.indexOf('development') !== -1; // detect --mode development
 
-export default {
-	context: path.resolve('./'),
-	cache: isDevelopment,
-	debug: isDevelopment,
+console.info("Webpack " + (isHot ? "running hot-reload sever" : "building output") + " in " + (isDev ? "DEVELOPMENT" : "PRODUCTION") + " mode");
 
-	// cheap-module-eval-source-map, because we want original source, but we don't
-	// care about columns, which makes this devtool faster than eval-source-map.
-	// http://webpack.github.io/docs/configuration.html#devtool
-	devtool: isDevelopment ? 'cheap-module-eval-source-map' : '',
+const app = {
 
-	entry: {app: "./js/app"},
+	context: path.resolve('.'),
 
-	// Výstupní soubory...
-	output: {
-		pathinfo: true,
-		filename: "./js/[name].min.js",
-		chunkFilename: "./js/[id].js",
-		sourceMapFilename: "./js/[name].min.js.map"
+	entry: {
+		app: "./src/js/index.js"
 	},
 
-	externals: {'jquery': 'jQuery'},
+	output: {
+		path: path.resolve(__dirname, './dist'),
+		publicPath: isDev ? "http://" + process.env.HOST + ":8080/dist" : "/wp-content/themes/" + path.basename(__dirname) + "/dist/",
+		filename: isDev ? '[name].js' : '[name].[chunkhash].js',
+		chunkFilename: isDev ? '[name].js' : '[name].[chunkhash].js'
+	},
 
 	resolve: {
-		modulesDirectories: ['node_modules', 'public/js'],
-		alias: {
-			app: path.resolve("./js/"),
-			boostrap: path.resolve("./node_modules/bootstrap/js/")
-		},
-		extensions: ['', '.js', '.jsx']
+		modules: [path.resolve(__dirname, "src"), "node_modules"]
 	},
 
+
+	devServer: {
+		overlay: true,
+		contentBase: path.join(__dirname),
+		compress: true,
+		host: process.env.HOST,
+		port: 8080,
+		disableHostCheck: true,
+		allowedHosts: [process.env.HOST],
+		headers: {'Access-Control-Allow-Origin': '*'}
+	},
+
+	// @see https://webpack.js.org/configuration/devtool/
+	// in DEVELOPMENT mode is set to eval by default but we need maps also...
+	devtool: isDev ? "cheap-eval-source-map" : false,
+
 	module: {
-		loaders: [
-			{test: /\.jsx?$/, loader: 'babel', include: /js/, query: {cacheDirectory: isDevelopment}},
-			{test: /\.css/, loader: isDevelopment ? 'style!css' : ExtractTextPlugin.extract('style', 'css!postcss')},
+		rules: [
+
+			// JS
 			{
-				test: /\.less$/,
-				loader: isDevelopment ? 'style!css!less' : ExtractTextPlugin.extract('style', 'css!postcss!less')
+				test: /\.js$/,
+				exclude: /(node_modules)/,
+				use: {loader: "babel-loader"},
 			},
-			{test: /\.jpe?g$|\.gif$|\.png$|\.ico$/, loader: 'file?name=img/[name].[ext]'},
-			{test: /\.eot|\.ttf|\.svg|\.woff2?/, loader: 'file?name=fonts/[name].[ext]'}
+
+			// CSS
+			{
+				test: /\.css$/,
+				use: [
+					MiniCssExtractPlugin.loader,
+					"css-loader", "postcss-loader"
+				]
+			},
+
+			// images & fonts loader
+			{
+				test: /\.(jpe?g|png|gif|webp|eot|ttf|woff|woff2|svg|)$/i,
+				use: [
+					{loader: "url-loader", options: {limit: 1000, name: "assets/[name].[hash].[ext]"}}
+				]
+			}
+
 		]
 	},
 
-	postcss: function () {
-		return [autoprefixer, cssnano];
-	},
-
 	plugins: [
-		new ExtractTextPlugin("style", "./style.css"),
-	].concat(
-			isDevelopment ? [] : [
 
-				// https://github.com/webpack/docs/wiki/optimization#deduplication
-				new webpack.optimize.DedupePlugin(),
+		new HtmlWebpackPlugin({title: '', minify: {}}),
 
-				// https://github.com/webpack/docs/wiki/optimization#minimize
-				new webpack.optimize.OccurrenceOrderPlugin(),
+		// Always write HTML to disc
+		new HtmlWebpackHarddiskPlugin(),
 
-				// https://github.com/webpack/docs/wiki/optimization#minimize
-				new webpack.optimize.UglifyJsPlugin(
-						{
-							//minimize: true,
-							comments: false,
-							sourceMap: false,
-							pathinfo: false,
-							compress: {screw_ie8: true, keep_fnames: true, warnings: false},
-							mangle: {screw_ie8: true, keep_fnames: true, except: ['$', 'jQuery']}
-						}
-				)
-			]
-	)
+	].concat(isHot ? [] : [
+		// Extract CSS to file when is not HMR mode...
+		new MiniCssExtractPlugin({
+			filename: isDev ? 'css/[name].css' : 'css/[name].[contenthash].css',
+			chunkFilename: 'css/[id].css'
+		})
+	]),
 
 };
+
+module.exports = app;

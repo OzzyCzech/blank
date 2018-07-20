@@ -1,45 +1,21 @@
 <?php
 
-namespace {
-	function src($uri) {
-		return get_stylesheet_directory_uri() . '/' . $uri;
-	}
-}
+// translation
+define('LD', basename(dirname(__DIR__))); // Language Domain name
+register_nav_menus(['primary' => __('Primary Menu', LD),]);
+load_theme_textdomain(LD, get_template_directory() . '/languages');
 
-namespace helpers {
+// theme support
+add_theme_support('title-tag');
+add_theme_support('html5', ['comment-list', 'comment-form', 'search-form', 'gallery', 'caption']);
+add_theme_support('automatic-feed-links');
+add_theme_support('post-thumbnails');
 
-	function mail($email, $text = null) {
-		return '<script type="text/javascript">document.write("' .
-		addslashes(
-			str_rot13(
-				'<a href="mailto:' . $email . '" rel="nofollow">' . ($text ?: $email) . '</a>'
-			)
-		) . '".replace(/[a-zA-Z]/g,function(c){return String.fromCharCode((c<="Z"?90:122)>=(c=c.charCodeAt(0)+13)?c:c-26);}));</script>' .
-		'<noscript><span style="unicode-bidi: bidi-override; direction: rtl;">' . strrev($email) . '</span></noscript>';
-	}
-
-	function phone($number) {
-		$number = preg_replace('#[^0-9\+]#', '', $number);
-		preg_match('/^(\+[0-9]{3})?([0-9]{3})([0-9]{3})([0-9]{3})$/', $number, $matches);
-		array_shift($matches);
-		return '<a href="tel://' . $number . '">' . implode(' ', $matches) . '</a>';
-	}
-
-	function data($var, $data = null) {
-		return '<script type="text/javascript">/* <![CDATA[ */ var $var = ' . json_encode($data) . ';/* ]]> */</script>';
-	}
-}
-
-namespace filters {
-	function nofollow($html, $skip = null) {
-		return preg_replace_callback(
-			"#(<a[^>]+?)>#is", function ($mach) use ($skip) {
-			return (
-				!($skip && strpos($mach[1], $skip) !== false) &&
-				strpos($mach[1], 'rel=') === false
-			) ? $mach[1] . ' rel="nofollow">' : $mach[0];
-		},
-			$html
-		);
-	}
-}
+// actions
+add_action('init','\Theme\init');
+add_action('wp_head','\Theme\wp_head');
+add_action('wp_enqueue_scripts', '\Theme\wp_enqueue_scripts');
+add_action('body_class', '\Theme\body_class');
+add_action('template_include', '\Theme\template_include');
+add_action('widgets_init', '\Theme\widgets_init');
+add_action('after_switch_theme', '\flush_rewrite_rules');

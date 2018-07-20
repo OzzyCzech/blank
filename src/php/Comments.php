@@ -1,10 +1,11 @@
 <?php
-namespace comments {
 
-	add_filter('comment_form_defaults', ['comment_form_defaults']);
+namespace Comments;
 
-	function comment_form_defaults($defaults) {
-		$defaults['fields']['author'] = '
+add_filter('comment_form_defaults', ['comment_form_defaults']);
+
+function comment_form_defaults($defaults) {
+	$defaults['fields']['author'] = '
 			<div class="form-group">
 				<label class="col-md-12 control-label required" for="author">' . __('Name', LD) . '</label>
 				<div class="col-md-12">
@@ -13,7 +14,7 @@ namespace comments {
 			</div>
 			';
 
-		$defaults['fields']['email'] = '
+	$defaults['fields']['email'] = '
 			<div class="form-group">
 				<label class="col-md-12 control-label required" for="email">' . __('E-mail', LD) . '</label>
 				<div class="col-md-12">
@@ -22,12 +23,12 @@ namespace comments {
 			</div>
 			';
 
-		unset($defaults['fields']['url']);
-		unset($defaults['comment_notes_before']);
-		//unset($defaults['logged_in_as']);
-		unset($defaults['comment_notes_after']);
+	unset($defaults['fields']['url']);
+	unset($defaults['comment_notes_before']);
+	//unset($defaults['logged_in_as']);
+	unset($defaults['comment_notes_after']);
 
-		$defaults['comment_field'] = '
+	$defaults['comment_field'] = '
 			<div class="form-group">
 				<label class="col-md-12 control-label required" for="email">' . __('Comment', LD) . '</label>
 				<div class="col-md-12">
@@ -36,8 +37,6 @@ namespace comments {
 			</div>
 			';
 
-		$defaults['cancel_reply_link'] = '✕';
-		return $defaults;
-	}
-
+	$defaults['cancel_reply_link'] = '✕';
+	return $defaults;
 }
