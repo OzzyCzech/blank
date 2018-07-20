@@ -10,7 +10,7 @@
   "autoload": {
     "files": [
       "src/functions.php",
-      "src/php/theme.php"
+      "src/php/Theme.php"
     ],
     "psr-4": {
       "Theme\\": "src/php"
