@@ -58,10 +58,7 @@ const app = {
 			// CSS
 			{
 				test: /\.css$/,
-				use: [
-					MiniCssExtractPlugin.loader,
-					"css-loader", "postcss-loader"
-				]
+				use: isHot ? ["style-loader", "postcss-loader"] : [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"]
 			},
 
 			// images & fonts loader
@@ -77,7 +74,7 @@ const app = {
 
 	plugins: [
 
-		new HtmlWebpackPlugin({title: '', alwaysWriteToDisk: true, minify: {}}),
+		new HtmlWebpackPlugin({inject: "header", title: '', minify: {collapseWhitespace: true}, alwaysWriteToDisk: true}),
 
 		// Always write HTML to disc
 		new HtmlWebpackHarddiskPlugin(),
@@ -85,8 +82,8 @@ const app = {
 	].concat(isHot ? [] : [
 		// Extract CSS to file when is not HMR mode...
 		new MiniCssExtractPlugin({
-			filename: isDev ? 'css/[name].css' : 'css/[name].[contenthash].css',
-			chunkFilename: 'css/[id].css'
+			filename: isDev ? 'css/[name].css' : 'css/[name].[hash].css',
+			chunkFilename: isDev ? 'css/[id].css' : 'css/[id].[hash].css'
 		})
 	]),
 
