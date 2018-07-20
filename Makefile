@@ -15,5 +15,6 @@ build: install
 	yarn run build
 
 install:
+	cp .env.example .env
 	yarn install
 	composer install
